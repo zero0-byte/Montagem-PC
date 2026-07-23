@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurador PC - Loja Dinâmica</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { margin: 0; display: flex; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0b0c10; color: #c5c6c7; overflow: hidden; }
+        
+        #sidebar { width: 500px; padding: 20px; background: #1f2833; height: 100vh; overflow-y: auto; border-right: 1px solid #45a29e; display: flex; flex-direction: column; gap: 15px; }
+        h1 { font-size: 1.5em; color: #66fcf1; margin: 0; text-transform: uppercase; }
+        
+        .presets-box { background: #0b0c10; padding: 15px; border-radius: 8px; border: 1px solid #45a29e; }
+        .presets-box label { font-size: 0.9em; font-weight: bold; color: #66fcf1; display: block; margin-bottom: 10px; }
+        .preset-buttons { display: flex; gap: 10px; }
+        .btn-preset { flex: 1; padding: 10px; background: #45a29e; color: #0b0c10; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; transition: 0.2s; font-size: 0.85em; }
+        .btn-preset:hover { background: #66fcf1; }
+
+        .category-block { background: #0b0c10; padding: 12px; border-radius: 8px; border: 1px solid #2a2e3d; display: flex; flex-direction: column; gap: 10px; }
+        .cat-title { font-size: 1em; font-weight: 600; color: #66fcf1; border-bottom: 1px solid #2a2e3d; padding-bottom: 5px; }
+        
+        .product-list { max-height: 180px; overflow-y: auto; display: flex; flex-direction: column; gap: 5px; padding-right: 5px; }
+        .product-list::-webkit-scrollbar { width: 6px; }
+        .product-list::-webkit-scrollbar-thumb { background: #45a29e; border-radius: 3px; }
+        
+        .product-card { display: flex; align-items: center; gap: 10px; background: #1a1e24; border: 1px solid #2a2e3d; padding: 8px; border-radius: 6px; cursor: pointer; transition: 0.2s; }
+        .product-card:hover { border-color: #45a29e; background: #1f2833; }
+        .product-card.selected { border-color: #66fcf1; background: #233535; box-shadow: 0 0 8px rgba(102, 252, 241, 0.3); }
+        
+        .prod-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .prod-name { font-size: 0.85em; font-weight: bold; color: #fff; line-height: 1.2; margin-bottom: 4px; }
+        .prod-price { font-size: 0.9em; color: #66fcf1; font-weight: bold; }
+
+        #total-panel { padding: 15px; background: linear-gradient(135deg, #1f2833, #0b0c10); border: 2px solid #45a29e; border-radius: 8px; text-align: center; margin-top: auto; }
+        .price-total { font-size: 2.2em; font-weight: 800; color: #66fcf1; margin: 5px 0; }
+        .frete-info { font-size: 0.85em; color: #c5c6c7; }
+
+        #canvas-container { flex: 1; height: 100vh; position: relative; }
+    </style>
+    <!-- Bibliotecas 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+<div id="sidebar">
+    <h1>Loja de Hardware 3D</h1>
+    
+    <div class="presets-box">
+        <label>Qual a finalidade do PC?</label>
+        <div class="preset-buttons">
+            <button class="btn-preset" onclick="loadPreset('office')">Home Office</button>
+            <button class="btn-preset" onclick="loadPreset('gamer')">Gamer Padrão</button>
+            <button class="btn-preset" onclick="loadPreset('streamer')">High-End</button>
+        </div>
+    </div>
+
+    <div id="controls-container"></div>
+
+    <div id="total-panel">
+        <div class="price-total" id="total-price">R$ 0,00</div>
+        <div class="frete-info" id="frete-info">Frete: R$ 0,00</div>
+    </div>
+</div>
+
+<div id="canvas-container"></div>
+
+<!-- AQUI CHAMAMOS O SEU ARQUIVO JAVASCRIPT -->
+<script src="script.js"></script>
+
+</body>
+</html>
