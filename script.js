@@ -1,30 +1,62 @@
-// Substitua sua função init3D atual por esta no arquivo script.js
-
-function init3D() {
-    const container = document.getElementById('canvas-container');
-    scene = new THREE.Scene();
-    // Fundo cinza super escuro para dar contraste
-    scene.background = new THREE.Color(0x0a0a0c); 
-    
-    camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-    camera.position.set(5, 3, 7);
-    
-    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-    renderer.setPixelRatio(window.devicePixelRatio); // Texturas nítidas em telas Retina/4K
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.toneMapping = THREE.ACESFilmicToneMapping; // Cores de cinema
-    renderer.toneMappingExposure = 1.0;
-    container.appendChild(renderer.domElement);
-    
-    // O SEGREDO DO REALISMO: Ambiente HDR (RoomEnvironment)
-    const pmremGenerator = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmremGenerator.fromScene(new THREE.RoomEnvironment(), 0.04).texture;
-    
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.enableDamping = true;
-    controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.8; // Rotação elegante e lenta
-    controls.maxPolarAngle = Math.PI / 2 + 0.1; // Impede a câmera de ir muito para baixo do chão
-
-    animate();
+{
+  "gpu": {
+    "title": "Placas de Vídeo",
+    "items": [
+      {
+        "id": "g1",
+        "name": "NVIDIA RTX 3080",
+        "specs": "10GB GDDR6X",
+        "price": 4599,
+        "arquivo_3d": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb",
+        "escala_3d": [1, 1, 1],
+        "posicao_3d": [0, 0, 0]
+      },
+      {
+        "id": "g2",
+        "name": "NVIDIA RTX 4090",
+        "specs": "24GB GDDR6X",
+        "price": 11999,
+        "arquivo_3d": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Duck/glTF-Binary/Duck.glb",
+        "escala_3d": [1, 1, 1],
+        "posicao_3d": [0, 0, 0]
+      }
+    ]
+  },
+  "cpu": {
+    "title": "Processadores",
+    "items": [
+      {
+        "id": "c1",
+        "name": "AMD Ryzen 9 7950X",
+        "specs": "16 núcleos / 32 threads",
+        "price": 3299,
+        "arquivo_3d": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxTextured/glTF-Binary/BoxTextured.glb",
+        "escala_3d": [1, 1, 1],
+        "posicao_3d": [0, 0, 0]
+      },
+      {
+        "id": "c2",
+        "name": "Intel Core i9-14900K",
+        "specs": "24 núcleos / 32 threads",
+        "price": 3099,
+        "arquivo_3d": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/BoxTextured/glTF-Binary/BoxTextured.glb",
+        "escala_3d": [1, 1, 1],
+        "posicao_3d": [0, 0, 0]
+      }
+    ]
+  },
+  "gabinete": {
+    "title": "Gabinetes",
+    "items": [
+      {
+        "id": "b1",
+        "name": "NZXT H510",
+        "specs": "Mid Tower ATX",
+        "price": 599,
+        "arquivo_3d": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Box/glTF-Binary/Box.glb",
+        "escala_3d": [1, 1, 1],
+        "posicao_3d": [0, 0, 0]
+      }
+    ]
+  }
 }
